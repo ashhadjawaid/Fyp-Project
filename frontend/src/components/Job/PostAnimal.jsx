@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import "./post.css"
 const PostAnimal = () => {
-  const { isAuthorized, user, authToken  } = useContext(Context);
+  const { isAuthorized, user, authToken } = useContext(Context);
   const [animalPicture, setanimalPicture] = useState(null);
   const [rescueAnimal, setRescueAnimal] = useState({
     applicantName: "",
@@ -19,12 +19,13 @@ const PostAnimal = () => {
     city: "",
     zip: "",
     addInfoAnimal: "",
-    addInfoLocation: ""
-
+    addInfoLocation: "",
+    latitude: '',
+    longitude: ''
   })
 
-   // Function to handle file input changes
-   const handleFileChange = (event) => {
+  // Function to handle file input changes
+  const handleFileChange = (event) => {
     const animalPicture = event.target.files[0];
     setanimalPicture(animalPicture);
   };
@@ -37,88 +38,69 @@ const PostAnimal = () => {
     })
   }
 
-//   const handlePostAnimal = async (e) => {
-//     e.preventDefault();
+  const fetchLocation = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      setRescueAnimal({ ...rescueAnimal, latitude: latitude.toString(), longitude: longitude.toString() });
+    }, error => console.error(error));
+  };
 
-//     try {
-//       console.log("Submitting data:", rescueAnimal);
-//       const response = await fetch('http://localhost:4000/api/v1/job/postRescueDetails', {
-//           method: 'POST',
-//           headers: {
-//               "Content-Type": "multipart/form-data",
-//               Authorization: `Bearer ${authToken}`
-//           },
-//           credentials: 'include',
-//           body: JSON.stringify(rescueAnimal)
 
-//       })
-//       console.log("Response:", response);
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
+  const handlePostAnimal = async (e) => {
+    e.preventDefault();
 
-//     const data = await response.json();
-//     toast.success(data.message);
-//   } catch (error) {
-//     console.error(error.message, "error in submitting data from frontend");
-//     toast.error("Error in submitting data. Please try again.");
-//   }
-// }
+    try {
+      console.log("Submitting data:", rescueAnimal);
 
-const handlePostAnimal = async (e) => {
-  e.preventDefault();
+      const formData = new FormData();
 
-  try {
-    console.log("Submitting data:", rescueAnimal);
+      // Append text data
+      for (const key in rescueAnimal) {
+        formData.append(key, rescueAnimal[key]);
+      }
 
-    const formData = new FormData();
+      // Append file data
+      formData.append('animalPicture', animalPicture);
 
-    // Append text data
-    for (const key in rescueAnimal) {
-      formData.append(key, rescueAnimal[key]);
+      const response = await fetch('http://localhost:4000/api/v1/job/postRescueDetails', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      console.log("Response:", response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      toast.success(data.message);
+
+      setRescueAnimal({
+        applicantName: "",
+        applicantPhone: "",
+        applicantEmail: "",
+        animalSpecie: "dog",
+        animalBreed: "",
+        animalSize: "small",
+        petCondition: "injured",
+        location: "",
+        city: "",
+        zip: "",
+        addInfoAnimal: "",
+        addInfoLocation: "",
+        setanimalPicture: ""
+      })
+    } catch (error) {
+      console.error(error.message, "error in submitting data from frontend");
+      toast.error("Error in submitting data. Please try again.");
     }
-
-    // Append file data
-    formData.append('animalPicture', animalPicture);
-
-    const response = await fetch('http://localhost:4000/api/v1/job/postRescueDetails', {
-      method: 'POST',
-      credentials: 'include',
-      body: formData,
-    });
-
-    console.log("Response:", response);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    toast.success(data.message);
-
-    setRescueAnimal ({
-      applicantName: "",
-    applicantPhone: "",
-    applicantEmail: "",
-    animalSpecie: "dog",
-    animalBreed: "",
-    animalSize: "small",
-    petCondition: "injured",
-    location: "",
-    city: "",
-    zip: "",
-    addInfoAnimal: "",
-    addInfoLocation: "",
-    setanimalPicture: ""
-    })
-  } catch (error) {
-    console.error(error.message, "error in submitting data from frontend");
-    toast.error("Error in submitting data. Please try again.");
-  }
-};
+  };
 
 
-const navigateTo = useNavigate();
+  const navigateTo = useNavigate();
   if (!isAuthorized || (user && user.role !== "Job Seeker")) {
     navigateTo("/");
   }
@@ -145,12 +127,7 @@ const navigateTo = useNavigate();
             value={rescueAnimal.applicantEmail}
             onChange={handleInput}
           />
-          {/* <input type="text"
-                    placeholder='Animal Species'
-                    name='animalSpecie'
-                    value={rescueAnimal.animalSpecie}
-                    onChange={handleInput}
-                /> */}
+
           <select
             name='animalSpecie'
             value={rescueAnimal.animalSpecie}
@@ -169,13 +146,6 @@ const navigateTo = useNavigate();
             onChange={handleInput}
           />
 
-          {/* <input type="text"
-                    name='animalSize'
-                    placeholder='Animal Size'
-                    value={rescueAnimal.animalSize}
-                    onChange={handleInput}
-                /> */}
-
           <select
             name='animalSize'
             value={rescueAnimal.animalSize}
@@ -185,12 +155,7 @@ const navigateTo = useNavigate();
             <option value='medium'>Medium</option>
             <option value='big'>Big</option>
           </select>
-          {/* <input type="text"
-                    name='petCondition'
-                    placeholder='Pet Condition'
-                    value={rescueAnimal.petCondition}
-                    onChange={handleInput}
-                /> */}
+
           <select
             name='petCondition'
             value={rescueAnimal.petCondition}
@@ -202,7 +167,7 @@ const navigateTo = useNavigate();
             <option value='other'>Other</option>
           </select>
           <input type="text"
-            placeholder='Location'
+            placeholder='Address'
             name='location'
             value={rescueAnimal.location}
             onChange={handleInput}
@@ -221,12 +186,21 @@ const navigateTo = useNavigate();
             value={rescueAnimal.zip}
             onChange={handleInput}
           />
-          {/* <input type="text"
-            name='petPicture'
-            placeholder='Pet Picture'
-            value={rescueAnimal.petPicture}
+          <input type="number"
+            name='latitude'
+            placeholder='Latitude'
+            value={rescueAnimal.latitude}
             onChange={handleInput}
-          /> */}
+          />
+          <input type="number"
+            name='longitude'
+            placeholder='longitude'
+            value={rescueAnimal.longitude}
+            onChange={handleInput}
+          />
+          <div>
+            <button type="button" onClick={fetchLocation}>Fetch Current location</button>
+          </div>
           <div className='upload'>
             <label
               style={{ textAlign: "start", display: "block", fontSize: "20px" }}

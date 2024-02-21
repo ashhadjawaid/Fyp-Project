@@ -49,6 +49,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/shelter-registration" element={<ShelterRegistration />} />
+          <Route path="/shelter-rescue-info" element={<ShelterGetRescue/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/rescue" element={<PostAnimal />} />
           <Route path="*" element={<NotFound />} />
@@ -57,7 +58,6 @@ const App = () => {
             <Route path="users" element={<AdminUser />}/>
             <Route path="rescue-request" element={<RescueRequest />}/>
           </Route>
-          <Route path="/shelterGetRescue" element={<ShelterGetRescue/>}/>
         </Routes>
         <Footer />
         <Toaster />

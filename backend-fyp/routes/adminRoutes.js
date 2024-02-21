@@ -6,6 +6,6 @@ const router = express.Router();
 
 // Admin-only route
 router.get('/users', isAdmin, getAllUser)
-router.get("/getAllRescueRequest", isAdmin, getAllRescueRequest);
+router.get("/getAllRescueRequest", getAllRescueRequest);
 
 export default router;
