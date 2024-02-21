@@ -17,6 +17,8 @@ import AdminUser from "./components/Admin/AdminUser";
 import RescueRequest from "./components/Admin/RescueRequest";
 import ShelterRegistration from './components/Auth/ShelterRegistration'
 import Registration from './components/Auth/Registration'
+import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
+
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);
   useEffect(() => {
@@ -55,6 +57,7 @@ const App = () => {
             <Route path="users" element={<AdminUser />}/>
             <Route path="rescue-request" element={<RescueRequest />}/>
           </Route>
+          <Route path="/shelterGetRescue" element={<ShelterGetRescue/>}/>
         </Routes>
         <Footer />
         <Toaster />
