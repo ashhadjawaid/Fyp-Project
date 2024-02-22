@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { Context } from "../../main";
 import { Navigate, useNavigate } from 'react-router-dom';
+import './Shelter.css'
 const ShelterRescueRequest = () => {
     const { authToken } = useContext(Context);
     const [rescueAnimal, setRescueAnimal] = useState(null);

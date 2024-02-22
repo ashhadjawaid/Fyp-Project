@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import adop_img01 from '../../../public/assets/adop_img01.png'
+import adop_img01 from '../../../public/assets/adop_img01.png';
+import './Shelter.css';
+
 const RescueAnimalDetail = () => {
   const { id } = useParams(); // Get the animal ID from the URL parameter
   const [rescueAnimal, setRescueAnimal] = useState(null);
@@ -31,7 +33,7 @@ const RescueAnimalDetail = () => {
     <div className='RescueAnimalDetail'>
       <div className="container">
         <div className="row">
-          <div className="col-lg-6">
+          <div className="img col-lg-6">
             <img src={rescueAnimal.animalPicture.url} alt="" />
 
           </div>
@@ -40,8 +42,9 @@ const RescueAnimalDetail = () => {
               <p>Animal Breed: {rescueAnimal.animalBreed}</p>
               <p>Animal Size: {rescueAnimal.animalSize}</p>
               <p>Animal Condition: {rescueAnimal.petCondition}</p>
+              <p>Address: {rescueAnimal.address}</p>
             </div>
-            <p>Address: {rescueAnimal.address}</p>
+            
 
           </div>
         </div>
