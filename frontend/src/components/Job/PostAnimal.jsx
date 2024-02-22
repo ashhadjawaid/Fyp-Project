@@ -7,11 +7,9 @@ import "./post.css";
 
 const PostAnimal = () => {
   const { isAuthorized, user, authToken } = useContext(Context);
-<<<<<<< HEAD
   const [animalPicture, setAnimalPicture] = useState(null);
-=======
-  const [animalPicture, setanimalPicture] = useState(null);
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
+
+
   const [rescueAnimal, setRescueAnimal] = useState({
     applicantName: "",
     applicantPhone: "",
@@ -28,15 +26,10 @@ const PostAnimal = () => {
     city: "",
     zip: "",
     addInfoAnimal: "",
-<<<<<<< HEAD
-    addInfoLocation: ""
-  });
-=======
     addInfoLocation: "",
     latitude: '',
     longitude: ''
   })
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
 
   // Function to handle file input changes
   const handleFileChange = (event) => {
@@ -50,74 +43,10 @@ const PostAnimal = () => {
     setRescueAnimal({
       ...rescueAnimal,
       [name]: value,
-<<<<<<< HEAD
+
     });
   }
-=======
-    })
-  }
 
-  const fetchLocation = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      setRescueAnimal({ ...rescueAnimal, latitude: latitude.toString(), longitude: longitude.toString() });
-    }, error => console.error(error));
-  };
-
-
-  const handlePostAnimal = async (e) => {
-    e.preventDefault();
-
-    try {
-      console.log("Submitting data:", rescueAnimal);
-
-      const formData = new FormData();
-
-      // Append text data
-      for (const key in rescueAnimal) {
-        formData.append(key, rescueAnimal[key]);
-      }
-
-      // Append file data
-      formData.append('animalPicture', animalPicture);
-
-      const response = await fetch('http://localhost:4000/api/v1/job/postRescueDetails', {
-        method: 'POST',
-        credentials: 'include',
-        body: formData,
-      });
-
-      console.log("Response:", response);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      toast.success(data.message);
-
-      setRescueAnimal({
-        applicantName: "",
-        applicantPhone: "",
-        applicantEmail: "",
-        animalSpecie: "dog",
-        animalBreed: "",
-        animalSize: "small",
-        petCondition: "injured",
-        location: "",
-        city: "",
-        zip: "",
-        addInfoAnimal: "",
-        addInfoLocation: "",
-        setanimalPicture: ""
-      })
-    } catch (error) {
-      console.error(error.message, "error in submitting data from frontend");
-      toast.error("Error in submitting data. Please try again.");
-    }
-  };
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
 
   const fetchLocation = () => {
     if ("geolocation" in navigator) {
@@ -237,10 +166,7 @@ const PostAnimal = () => {
             value={rescueAnimal.applicantEmail}
             onChange={handleInput}
           />
-<<<<<<< HEAD
-=======
 
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
           <select
             name="animalSpecie"
             value={rescueAnimal.animalSpecie}
@@ -258,10 +184,7 @@ const PostAnimal = () => {
             value={rescueAnimal.animalBreed}
             onChange={handleInput}
           />
-<<<<<<< HEAD
-=======
 
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
           <select
             name="animalSize"
             value={rescueAnimal.animalSize}
@@ -271,10 +194,7 @@ const PostAnimal = () => {
             <option value="medium">Medium</option>
             <option value="big">Big</option>
           </select>
-<<<<<<< HEAD
-=======
 
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
           <select
             name="petCondition"
             value={rescueAnimal.petCondition}
@@ -285,20 +205,13 @@ const PostAnimal = () => {
             <option value="tangled">Tangled/Stuck</option>
             <option value="other">Other</option>
           </select>
-<<<<<<< HEAD
+
           <input
             type="text"
             name="address"
             placeholder="Address"
-            value={rescueAnimal.address}
-=======
-          <input type="text"
-            placeholder='Address'
-            name='location'
-            value={rescueAnimal.location}
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
-            onChange={handleInput}
-          />
+            value={rescueAnimal.address}/>
+         
           <input
             type="text"
             name="city"
@@ -313,7 +226,7 @@ const PostAnimal = () => {
             value={rescueAnimal.zip}
             onChange={handleInput}
           />
-<<<<<<< HEAD
+
           <div className="location-fetch">
             <button type="button" onClick={fetchLocation}>Fetch My Location</button>
             <input
@@ -333,27 +246,6 @@ const PostAnimal = () => {
           </div>
           <div className="upload">
             <label style={{ textAlign: "start", display: "block", fontSize: "20px" }}>
-=======
-          <input type="number"
-            name='latitude'
-            placeholder='Latitude'
-            value={rescueAnimal.latitude}
-            onChange={handleInput}
-          />
-          <input type="number"
-            name='longitude'
-            placeholder='longitude'
-            value={rescueAnimal.longitude}
-            onChange={handleInput}
-          />
-          <div>
-            <button type="button" onClick={fetchLocation}>Fetch Current location</button>
-          </div>
-          <div className='upload'>
-            <label
-              style={{ textAlign: "start", display: "block", fontSize: "20px" }}
-            >
->>>>>>> 79308ac558efb3dffc829e8e80f7dfb430ee615c
               Upload Photo
             </label>
             <input

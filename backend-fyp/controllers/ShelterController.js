@@ -1,6 +1,6 @@
 import Shelter from "../models/ShelterSchema.js";
 
-const createShelter = async (req, res) => {
+export const createShelter = async (req, res) => {
     try {
         // Check if shelter with provided _id exists
         const existingShelterData = await Shelter.findOne({ _id: req.body.shelter_id }); // Corrected field name to shelter_id

@@ -2,8 +2,6 @@ import express from "express";
 import { dbConnection } from "./database/dbConnection.js";
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-import applicationRouter from "./routes/applicationRoutes.js";
-import categoryRoutes from './routes/categoryRoutes.js'
 import adoptionRoutes from './routes/adoptionRoutes.js'
 import shelterRoutes from './routes/ShelterRoutes.js'
 import { config } from "dotenv";
@@ -36,8 +34,6 @@ app.use(
 );
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
-app.use("/api/v1/application", applicationRouter);
-app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/adoption", adoptionRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/shelter", shelterRoutes)

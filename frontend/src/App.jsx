@@ -18,6 +18,7 @@ import RescueRequest from "./components/Admin/RescueRequest";
 import ShelterRegistration from './components/Auth/ShelterRegistration'
 import Registration from './components/Auth/Registration'
 import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
+import RescueAnimalDetail from "./components/Shelter/RescueAnimalDetail";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/registration" element={<Registration />} />
           <Route path="/shelter-registration" element={<ShelterRegistration />} />
           <Route path="/shelter-rescue-info" element={<ShelterGetRescue/>}/>
+          <Route path="/rescue-Detail/:id" element={<RescueAnimalDetail/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/rescue" element={<PostAnimal />} />
           <Route path="*" element={<NotFound />} />
