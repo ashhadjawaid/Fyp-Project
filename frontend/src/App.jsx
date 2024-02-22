@@ -15,6 +15,10 @@ import Adoption from "./components/Adoption/Adoption";
 import Admin from "./components/Admin/Admin";
 import AdminUser from "./components/Admin/AdminUser";
 import RescueRequest from "./components/Admin/RescueRequest";
+import ShelterRegistration from './components/Auth/ShelterRegistration'
+import Registration from './components/Auth/Registration'
+import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
+
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);
   useEffect(() => {
@@ -43,6 +47,9 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/shelter-registration" element={<ShelterRegistration />} />
+          <Route path="/shelter-rescue-info" element={<ShelterGetRescue/>}/>
           <Route path="/" element={<Home />} />
           <Route path="/rescue" element={<PostAnimal />} />
           <Route path="*" element={<NotFound />} />
@@ -58,5 +65,7 @@ const App = () => {
     </>
   );
 };
-
+// hello
+// hello paagal
 export default App;
+
