@@ -21,6 +21,6 @@ router.delete("/delete/:id", isAuthenticated, deleteJob);
 router.get("/:id", isAuthenticated, getSingleJob);
 
 router.get("/getAllRescue", getAllRescueRequest);
-router.post("/postRescueDetails", isAuthenticated, postRescueAnimal);
+router.post("/postRescueDetails",postRescueAnimal);
 
 export default router;

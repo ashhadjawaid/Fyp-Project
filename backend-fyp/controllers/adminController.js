@@ -1,5 +1,5 @@
 import { User } from "../models/userSchema.js";
-import { RescueAnimal } from "../models/rescueAnimalSchema.js";
+import  RescueAnimal from "../models/rescueAnimalSchema.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 export const getAllUser = async (req, res) => {
     try {
