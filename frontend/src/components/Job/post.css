@@ -1,19 +1,4 @@
- 
-
-
-   /* .postAnimal {
-    background-color: #f8ede2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(235, 192, 144, 0.1);
-    max-width: 600px;
-    margin: 30px auto;
-  } */
-  
-  /* .container {
-    text-align: center;
-  } */
-  
+   
   h3 {
     color: #333;
     margin-bottom: 20px;
@@ -27,6 +12,7 @@
   input[type='text'],
   input[type='number'],
   input[type='email'],
+  input[type='tel']
   select,
   textarea {
     width: 100%;
@@ -51,16 +37,7 @@
   }
   
 /* Styling for the "Choose File" input */
-input[type="file"] {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    color: #333;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-  }
+
   
   input[type="file"]:hover,
   input[type="file"]:focus {
@@ -89,11 +66,47 @@ input[type="file"] {
     display: block;
     padding: 10px 0; /* Padding top and bottom */
   }
-  
-  
-  
+  .input-box {
+    display: flex;
+    gap: 15px;
+}
   textarea {
     resize: vertical;
   }
-  
-  
+
+  .input-style {
+    width: 100% !important;
+    border: 1px solid #ccc !important;
+    color: #787676 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+}
+
+.form-side-left {
+  background-color: #005c57;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.form-side-left h2 {
+  font-size: 35px;
+  font-family: "Fraunces", serif;
+  margin-bottom:20px;
+}
+
+.upload-image{
+
+  padding: 15px;
+  border: 2px #ccc dashed;
+  border-radius: 5px;
+  color: #333;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  height: 80px;
+}
+.form-side-left p {
+  font-size: 18px;
+  margin-bottom: 13px;
+}
