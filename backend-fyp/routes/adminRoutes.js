@@ -75,4 +75,46 @@ router.get('/rescue-requests/:requestId', async (req, res, next) => {
     }
 });
 
+// delete user
+
+router.delete('/users/:userId', async (req, res, next) => {
+    try {
+        const { userId } = req.params;
+
+        // Find the user by ID and delete
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({ success: false, message: 'User not found.' });
+        }
+
+        res.status(200).json({ success: true, message: 'User deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        next(error);
+    }
+});
+
+// Endpoint to delete a rescue request by ID (admin only)
+router.delete('/rescue-requests/:requestId', async (req, res, next) => {
+    try {
+        const { requestId } = req.params;
+
+        // Find the rescue request by ID and delete
+        const deletedRequest = await RescueAnimal.findByIdAndDelete(requestId);
+
+        if (!deletedRequest) {
+            return res.status(404).json({ success: false, message: 'Rescue animal request not found.' });
+        }
+
+        res.status(200).json({ success: true, message: 'Rescue animal request deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting rescue request:', error);
+        next(error);
+    }
+});
+
+
+
+
 export default router;

@@ -56,7 +56,6 @@ const AdoptionSchema = new mongoose.Schema(
     postedBy: {
       type: mongoose.Schema.ObjectId,
       ref: "Shelter",
-      required: true,
     },
   },
   {
