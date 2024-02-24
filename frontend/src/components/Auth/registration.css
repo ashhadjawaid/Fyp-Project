@@ -1,0 +1,68 @@
+ .registration2 {
+     background-size: cover;
+    background-position: center;
+    background-image: url("../../../public/assets/backgroundregist.jpg");
+    opacity: 0.8;
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    
+
+  }
+  .registration2 .colorOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100vh;
+
+    
+    
+  }
+ .registration2 .colorOverlay .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sectionnew {
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    text-align: center;
+    width: 40%;
+  }
+
+  .sectionnew h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+ 
+  .sectionnew img {
+    width: 40%;
+ 
+    margin-bottom: 10px;
+  }
+  
+  .sectionnew p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+     
+  .sectionnew a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-top: 20px;
+    background-color: #d37a27;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+  

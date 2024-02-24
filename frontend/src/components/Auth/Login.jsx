@@ -6,6 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import loginPage from "../../../public/assets/Login-amico.png";
 import "./auth.css";
 
 const Login = () => {
@@ -73,7 +74,7 @@ const Login = () => {
               <div>
                 <input
                   type="email"
-                  placeholder="zk@gmail.com"
+                  placeholder="abc@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -85,7 +86,7 @@ const Login = () => {
               <div>
                 <input
                   type="password"
-                  placeholder="Your Password"
+                  placeholder="Enter Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -99,7 +100,7 @@ const Login = () => {
           </form>
         </div>
         <div className="banner">
-          <img src="/login.png" alt="login" />
+          <img src={loginPage} alt="login" />
         </div>
       </section>
     </>

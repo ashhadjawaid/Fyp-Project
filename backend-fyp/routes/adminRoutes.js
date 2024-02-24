@@ -1,12 +1,14 @@
 import express from "express";
-import { isAuthenticated } from "../middlewares/auth.js";
-import { isAdmin } from '../middlewares/adminMiddleware.js';
-import { getAllUser, getAllRescueRequest,deleteUser } from "../controllers/adminController.js";
+import RescueAnimal from "../models/rescueAnimalSchema.js";
+import Shelter from '../models/ShelterSchema.js';
+import { User } from "../models/userSchema.js";
+// import { isAdmin } from '../middlewares/adminMiddleware.js';
+import { getAllUser, getAllRescueRequest } from "../controllers/adminController.js"
+
 const router = express.Router();
 
-// Admin-only route
-router.get('/users', isAdmin, getAllUser)
-router.get('/users/delete/:id', isAdmin, deleteUser)
+router.get('/users', getAllUser)
+// router.get('/users/delete/:id', isAdmin, deleteUser)
 router.get("/getAllRescueRequest", getAllRescueRequest);
 
 // Endpoint to send a rescue animal request to a specific shelter

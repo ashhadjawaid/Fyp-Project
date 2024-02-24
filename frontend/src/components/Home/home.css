@@ -590,15 +590,27 @@
   padding: 20px;
   border-radius: 20px;
   overflow: hidden;
+
+}
+.ban-rescue .colorOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50px;
 }
 
 .rescue-img {
   width: 100%;
 position: relative;
+
 }
 .rescue-img img {
 width: 100%;
 border-radius: 50px;
+/* background: rgba(0, 0, 0, 0.6); */
+z-index: -1222;
+
 }
 
 .rescue-text {

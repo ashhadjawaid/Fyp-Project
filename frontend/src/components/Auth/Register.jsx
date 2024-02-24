@@ -8,7 +8,10 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import registerImg from '../../../public/assets/signup.png';
+
 import "./auth.css";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -49,9 +52,9 @@ const Register = () => {
       }
     }
   };
-  
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+
+  if (isAuthorized) {
+    return <Navigate to={'/'} />
   }
 
 
@@ -80,7 +83,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
-                  placeholder="Zeeshan"
+                  placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -92,7 +95,7 @@ const Register = () => {
               <div>
                 <input
                   type="email"
-                  placeholder="zk@gmail.com"
+                  placeholder="abc@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -104,7 +107,7 @@ const Register = () => {
               <div>
                 <input
                   type="number"
-                  placeholder="12345678"
+                  placeholder="03xx-xxxxxxx"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -116,7 +119,7 @@ const Register = () => {
               <div>
                 <input
                   type="password"
-                  placeholder="Your Password"
+                  placeholder="Enter Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -130,7 +133,7 @@ const Register = () => {
           </form>
         </div>
         <div className="banner">
-          <img src="/register.png" alt="login" />
+          <img src={registerImg} alt="login" />
         </div>
       </section>
     </>

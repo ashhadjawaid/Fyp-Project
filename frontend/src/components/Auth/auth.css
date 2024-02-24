@@ -47,3 +47,38 @@
     padding: 8px;
     color: #fff;
 }
+
+.shelterRegistration form button {
+    padding: 8px;
+    text-align: center;
+    border: none;
+    margin-top: 25px;
+    font-weight: 500;
+    color: #fff;
+    background: #d37a27;
+    font-size: 1rem;
+    border-radius: 7px;
+}
+
+.shelterRegistration .registButton {
+    padding: 12px;
+    text-align: center;
+    border: none;
+    margin-top: 25px;
+    font-weight: 700;
+    color: #fff;
+    background: #d37a27;
+    font-size: 1.2rem;
+    border-radius: 7px;
+}
+.container .regbutton .butt {
+    padding: 8px;
+    text-align: center;
+    border: none;
+    margin-top: 25px;
+    font-weight: 500;
+    color: #fff;
+    background: #d37a27;
+    font-size: 0.9rem;
+    border-radius: 7px;
+}
