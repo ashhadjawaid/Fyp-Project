@@ -78,10 +78,20 @@ const AdoptionForm = () => {
     setAnimalPicture(null);
   };
   return (
-    <div>
-      <>
-        <div className="adoption_post page">
-          <div className="container">
+
+
+    <div className="adoption_post page">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="form-side-left">
+              <h2>Helloo ANY</h2>
+              <p>lorem Ipsum</p>
+              <p>Lorem Ipsum</p>
+              <p>Lorem Ipsum</p>
+            </div>
+          </div>
+          <div className="col-lg-6">
             <h3>POST NEW Adoption</h3>
             <form onSubmit={handlePostAdoption}>
               <input
@@ -165,8 +175,11 @@ const AdoptionForm = () => {
             </form>
           </div>
         </div>
-      </>
+
+      </div>
     </div>
+
+
   )
 }
 

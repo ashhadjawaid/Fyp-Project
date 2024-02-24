@@ -59,7 +59,7 @@ const AdoptionDetail = () => {
                 <p>{adoptPet.petBio}</p>
               </div>
           <div className="pet-Animal-Detail">
-            <h3>More about Bruno</h3>
+            <h3>More about {adoptPet.petName}</h3>
             <div className="adoption-table">
               <p>Weight: {adoptPet.weight}</p>
               <p>height: {adoptPet.height}</p>

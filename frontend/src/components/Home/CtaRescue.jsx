@@ -14,7 +14,7 @@ const CtaRescue = () => {
 
                 <p>Make a difference in a rescue animal's life with love,  <br />
                   care, and a forever home.</p>
-                <a href="#">Rescue Now</a>
+                <a href="/rescue">Rescue Now</a>
               </div>
             </div>
           </div>
