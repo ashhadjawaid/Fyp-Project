@@ -1,15 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from "react-router-dom";
-import { Context } from "../../main";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import "./post.css";
+import toast from "react-hot-toast";
 
 const PostAnimal = () => {
-  const { isAuthorized, user, authToken } = useContext(Context);
   const [animalPicture, setAnimalPicture] = useState(null);
-
-
   const [rescueAnimal, setRescueAnimal] = useState({
     applicantName: "",
     applicantPhone: "",
@@ -18,59 +12,74 @@ const PostAnimal = () => {
     animalBreed: "",
     animalSize: "small",
     petCondition: "injured",
-    currentLocation: {
-      type: "Point",
-      coordinates: [] // Initialize coordinates as an empty array
-    },
     address: "",
     city: "",
     zip: "",
     addInfoAnimal: "",
-    addInfoLocation: "",
-    latitude: '',
-    longitude: ''
-  })
+    addInfoLocation: ""
+  });
 
-  // Function to handle file input changes
+  useEffect(() => {
+    const loadGoogleMapScript = async () => {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAHZlkpUQT9Bpq9un5O9TkNNrchMUwqzMo&libraries=places`;
+      script.async = true;
+      document.body.appendChild(script);
+      script.onload = () => {
+        initGoogleMap();
+      };
+    };
+    loadGoogleMapScript();
+  }, []);
+
+  const  initGoogleMap = () => {
+    const map = new window.google.maps.Map(document.getElementById("map"), {
+      center: { lat: 24.9135104, lng: 67.0826496 },
+      zoom: 15,
+    });
+
+    const geocoder = new window.google.maps.Geocoder();
+    const infowindow = new window.google.maps.InfoWindow();
+
+    map.addListener("click", (e) => {
+      geocoder.geocode({ location: e.latLng }, (results, status) => {
+        if (status === "OK") {
+          if (results[0]) {
+            const address = results[0].formatted_address;
+            setRescueAnimal({
+              ...rescueAnimal,
+              currentLocation: {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng()
+              },
+              address: address
+            });
+            infowindow.setContent(address);
+            infowindow.setPosition(e.latLng);
+            infowindow.open(map);
+          } else {
+            window.alert("No results found");
+          }
+        } else {
+          window.alert("Geocoder failed due to: " + status);
+        }
+      });
+    });
+  };
+
   const handleFileChange = (event) => {
     const animalPicture = event.target.files[0];
     setAnimalPicture(animalPicture);
   };
 
   const handleInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    const { name, value } = e.target;
     setRescueAnimal({
       ...rescueAnimal,
       [name]: value,
-
     });
   }
 
-
-  const fetchLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        setRescueAnimal({
-          ...rescueAnimal,
-          currentLocation: {
-            type: "Point",
-            coordinates: [longitude, latitude] // Reverse order: [longitude, latitude]
-          }
-        });
-      }, (error) => {
-        console.error("Error fetching location:", error.message);
-        toast.error("Error fetching location. Please try again.");
-      });
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-      toast.error("Geolocation is not supported by this browser.");
-    }
-  }
-  
-  // Function to handle form submission
   const handlePostAnimal = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
   
@@ -79,13 +88,7 @@ const PostAnimal = () => {
   
       // Append text data
       for (const key in rescueAnimal) {
-        if (key === 'currentLocation') {
-          formData.append(`${key}[type]`, rescueAnimal[key].type);
-          formData.append(`${key}[coordinates][0]`, rescueAnimal[key].coordinates[0]);
-          formData.append(`${key}[coordinates][1]`, rescueAnimal[key].coordinates[1]);
-        } else {
-          formData.append(key, rescueAnimal[key]);
-        }
+        formData.append(key, rescueAnimal[key]);
       }
   
       // Append file data
@@ -95,7 +98,7 @@ const PostAnimal = () => {
       const response = await axios.post('http://localhost:4000/api/v1/job/postRescueDetails', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${authToken}`
+          // Authorization: `Bearer ${authToken}`
         }
       });
   
@@ -111,8 +114,7 @@ const PostAnimal = () => {
       toast.error("Error in submitting data. Please try again.");
     }
   };
-  
-  // Function to reset form fields
+
   const resetForm = () => {
     setRescueAnimal({
       applicantName: "",
@@ -123,8 +125,8 @@ const PostAnimal = () => {
       animalSize: "small",
       petCondition: "injured",
       currentLocation: {
-        type: "Point",
-        coordinates: [] // Reset coordinates to empty array
+        lat: null,
+        lng: null
       },
       address: "",
       city: "",
@@ -134,11 +136,6 @@ const PostAnimal = () => {
     });
     setAnimalPicture(null);
   };
-
-  const navigateTo = useNavigate();
-  if (!isAuthorized || (user && user.role !== "Job Seeker")) {
-    navigateTo("/");
-  }
 
   return (
     <div className='postAnimal'>
@@ -206,11 +203,15 @@ const PostAnimal = () => {
             <option value="other">Other</option>
           </select>
 
+          <div id="map" style={{ height: "400px", marginBottom: "10px" }} />
+
           <input
             type="text"
             name="address"
             placeholder="Address"
-            value={rescueAnimal.address}/>
+            value={rescueAnimal.address}
+            onChange={handleInput}
+          />
          
           <input
             type="text"
@@ -227,23 +228,6 @@ const PostAnimal = () => {
             onChange={handleInput}
           />
 
-          <div className="location-fetch">
-            <button type="button" onClick={fetchLocation}>Fetch My Location</button>
-            <input
-              type="number"
-              name="latitude"
-              placeholder="Latitude"
-              value={rescueAnimal.currentLocation.coordinates[1] || ""}
-              onChange={handleInput}
-            />
-            <input
-              type="number"
-              name="longitude"
-              placeholder="Longitude"
-              value={rescueAnimal.currentLocation.coordinates[0] || ""}
-              onChange={handleInput}
-            />
-          </div>
           <div className="upload">
             <label style={{ textAlign: "start", display: "block", fontSize: "20px" }}>
               Upload Photo
