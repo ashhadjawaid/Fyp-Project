@@ -21,12 +21,9 @@ import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
 import RescueAnimalDetail from "./components/Shelter/RescueAnimalDetail";
 import AdminShelter from "./components/Admin/AdminShelter";
 import AdoptionForm from "./components/Adoption/AdoptionForm";
-<<<<<<< HEAD
 import AdoptionDetail from "./components/Adoption/AdoptionDetail";
-=======
 import ShelterDetailPage from "./components/Shelter/ShelterDetailsPage";
 import AllSheltersPage from "./components/Shelter/AllShelterPage";
->>>>>>> fc59c8810a6db8cada1bb8fcf7eea9c9128d13b7
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);

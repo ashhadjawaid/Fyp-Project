@@ -30,7 +30,7 @@ const AdoptionList = () => {
         <div className='Adoption-List py-5'>
             <div className="container">
                 <h2>Meet Our Adorable Pets Looking for Forever Homes</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, aspernatur quasi dolorem praesentium doloribus modi blanditiis consectetur enim qui. Maiores odit iusto quis sint repellat veniam dolores sapiente eum inventore.</p>
+                <p>Meet our adorable pets waiting for loving homes. From playful pups to cuddly cats, find your perfect companion today. Visit our shelter and give a furry friend a forever home.</p>
                 <div className='row'>
                     {dataList.length > 0 ? (
                         <>
