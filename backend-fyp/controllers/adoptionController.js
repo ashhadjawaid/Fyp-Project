@@ -11,6 +11,46 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const postAdoption = (async (req, res) => {
+  const {
+    petName,
+    petBio,
+    petBreed,
+    age,
+    status,
+    weight,
+    height,
+    hypoallegenic,
+    city,
+    address,
+    adoptionPicture,
+  } = req.body;
+
+  if (!petName || !petBio || !petBreed || !age || !city || !status || !weight || !height || !city || !hypoallegenic || !address || !adoptionPicture ) {
+    return next(new ErrorHandler("Please provide full details About Animal.", 400));
+  }
+  const postedBy = req.user._id;
+  const adoption = await Adoption.create({
+    petName,
+    petBio,
+    petBreed,
+    age,
+    status,
+    weight,
+    height,
+    hypoallegenic,
+    city,
+    address,
+    adoptionPicture,
+    status,
+  });
+  res.status(200).json({
+    success: true,
+    message: "Animal added to Adoption Successfully!",
+    adoption,
+  });
+});
+
 export const create = async (req, res) => {
   try {
     const { firstName, lastName, email, address, phone, pet } = req.body;

@@ -48,8 +48,6 @@ export const postRescueAnimal = async (req, res, next) => {
       applicantName,
       applicantPhone,
       applicantEmail,
-      latitude,
-      longitude
     } = req.body;
 
     // Validate required fields
@@ -58,13 +56,13 @@ export const postRescueAnimal = async (req, res, next) => {
     }
 
     // Ensure latitude and longitude are parsed as numbers
-    const parsedLatitude = parseFloat(latitude);
-    const parsedLongitude = parseFloat(longitude);
+    // const parsedLatitude = parseFloat(latitude);
+    // const parsedLongitude = parseFloat(longitude);
 
-    if (isNaN(parsedLatitude) || isNaN(parsedLongitude)) {
-      console.error('Invalid latitude or longitude values:', latitude, longitude);
-      return next(new ErrorHandler('Invalid latitude or longitude values.', 400));
-    }
+    // if (isNaN(parsedLatitude) || isNaN(parsedLongitude)) {
+    //   console.error('Invalid latitude or longitude values:', latitude, longitude);
+    //   return next(new ErrorHandler('Invalid latitude or longitude values.', 400));
+    // }
 
     // Create RescueAnimal document with all details including latitude and longitude
     const rescueAnimal = await RescueAnimal.create({
@@ -81,10 +79,10 @@ export const postRescueAnimal = async (req, res, next) => {
       applicantName,
       applicantPhone,
       applicantEmail,
-      currentLocation: {
-        type: 'Point',
-        coordinates: [parsedLongitude, parsedLatitude]
-      },
+      // currentLocation: {
+      //   type: 'Point',
+      //   coordinates: [parsedLongitude, parsedLatitude]
+      // },
       animalPicture: {
         public_id: cloudinaryResponse.public_id,
         url: cloudinaryResponse.secure_url,
