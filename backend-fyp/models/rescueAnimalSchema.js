@@ -33,17 +33,6 @@ const rescueAnimalSchema = new mongoose.Schema({
   zip: {
     type: Number,
   },
-  // // New Fields for Latitude and Longitude
-  // currentLocation: {
-  //   type: {
-  //     type: String,
-  //     enum: ['Point'], // Ensure type is 'Point'
-  //   },
-  //   coordinates: {
-  //     type: [Number], // Array of numbers
-  //     required: true,
-  //   },
-  // },
   addInfoAnimal: {
     type: String,
   },

@@ -45,9 +45,17 @@
     font-weight: bold;
   }
   
-
+  .delete-button {
+    background: #db5151;
+    border: #db5151;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
   .dashboard {
     margin-left: 200px; 
     padding: 20px;
   }
-  
+  tr {
+    cursor: pointer;
+}

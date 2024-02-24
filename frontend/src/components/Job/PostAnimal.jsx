@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import "./post.css"
 import { MdUploadFile } from "react-icons/md";
 import { MdCircle } from "react-icons/md";
+import Navbar from '../Layout/Navbar';
+import Footer from '../Layout/Footer';
 const PostAnimal = () => {
   const [animalPicture, setAnimalPicture] = useState(null);
   const [rescueAnimal, setRescueAnimal] = useState({
@@ -140,6 +142,8 @@ const PostAnimal = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className='postAnimal'>
       <div className="container form-container">
         <div className="row">
@@ -294,6 +298,8 @@ const PostAnimal = () => {
 
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -29,6 +29,31 @@ const RescueRequest = () => {
        
     }
 
+    const deleteUser = async (id) => {
+        try {
+          const response = await fetch(`http://localhost:4000/api/v1/admin/rescue-requests/${id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+            credentials: 'include',
+          })
+          // Check if the response status is OK (200)
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            getAllUser();
+          } else {
+            // Handle non-OK responses (e.g., 404 Not Found)
+            console.log(`Error: ${response.status} - ${response.statusText}`);
+          }
+        } catch (error) {
+          console.log(error.message)
+        }
+    
+    
+      }
+
     const navigateToDetail = (rescueID) => {
         navigate(`/rescue-Detail/${rescueID}`);
     }
@@ -37,7 +62,7 @@ const RescueRequest = () => {
     }, [authToken])
     return (
         <div className="container">
-            <h2>Hello</h2>
+            <h2>Rescue Request</h2>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -49,6 +74,7 @@ const RescueRequest = () => {
                         <th scope="col">Animal Breed</th>
                         <th scope="col">Animal Size</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +88,8 @@ const RescueRequest = () => {
                                 <td>{currentUser.applicantName}</td>
                                 <td>{currentUser.animalBreed}</td>
                                 <td>{currentUser.animalSize}</td>
-                                <td>{currentUser.location}</td>
+                                <td>{currentUser.address}</td>
+                                <td><button className='delete-button' onClick={()=>deleteUser(currentUser._id)}>Delete</button></td>
                             </tr>
                         ))
                     ) : (

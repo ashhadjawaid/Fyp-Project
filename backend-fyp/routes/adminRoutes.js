@@ -2,14 +2,14 @@ import express from "express";
 import RescueAnimal from "../models/rescueAnimalSchema.js";
 import Shelter from '../models/ShelterSchema.js';
 import { User } from "../models/userSchema.js";
-// import { isAdmin } from '../middlewares/adminMiddleware.js';
+import { isAdmin } from '../middlewares/adminMiddleware.js';
 import { getAllUser, getAllRescueRequest } from "../controllers/adminController.js"
 
 const router = express.Router();
 
-router.get('/users', getAllUser)
+router.get('/users', isAdmin, getAllUser)
 // router.get('/users/delete/:id', isAdmin, deleteUser)
-router.get("/getAllRescueRequest", getAllRescueRequest);
+router.get("/getAllRescueRequest", isAdmin, getAllRescueRequest);
 
 // Endpoint to send a rescue animal request to a specific shelter
 router.post('/send-to-shelter/:requestId', async (req, res, next) => {

@@ -7,7 +7,7 @@ export const ShelterIndex = () => {
   return (
     <>
     <Navbar/>
-      <ShelterGetRescue />
+      <ShelterRescueRequest />
       <Footer/>
       </>
   )

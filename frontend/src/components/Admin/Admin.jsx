@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import './admin.css'
-
+import logo from '../../../public/assets/paw-white.png'
 const Admin = () => {
   return (
 
@@ -9,7 +9,7 @@ const Admin = () => {
       <header>
         <div className="container">
           <nav className="sidebar">
-          <h2 className="sidebar-heading">Dashboard</h2> 
+          <img src={logo} alt="" />
             <ul>
               <li>
                 <NavLink to="/admin/users" activeClassName="active">Users</NavLink>

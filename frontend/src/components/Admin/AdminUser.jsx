@@ -29,7 +29,7 @@ const AdminUser = () => {
     }
     const deleteUser = async (id) => {
       try {
-        const response = await fetch(`http://localhost:4000/api/v1/admin/users/delete/${id}`, {
+        const response = await fetch(`http://localhost:4000/api/v1/admin/users/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -56,6 +56,7 @@ const AdminUser = () => {
     }, [authToken])
     return (
         <div>
+           <h2>Users</h2>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -74,7 +75,7 @@ const AdminUser = () => {
                   <td>{currentUser.name}</td>
                   <td>{currentUser.email}</td>
                   <td>{currentUser.phone}</td>
-                  <td><button onClick={()=>deleteUser(currentUser._id)}>Delete</button></td>
+                  <td><button className='delete-button' onClick={()=>deleteUser(currentUser._id)}>Delete</button></td>
                 </tr>
               ))
             ) : (
