@@ -8,9 +8,8 @@ const CtaAdoption = () => {
             <div className="ban_img">
                 <img src={adoptionBanner} border="0"/>
                 <div className="ban_text">
-                    <strong>
-                        <span>Helping Paws</span><br/> Find Homes
-                    </strong>
+                    <h1>Helping Paws Find Homes</h1>
+                       
                     <p>Make a difference in a shelter animal's life with love. <br/>
                         care, and a forever home. </p>
                     <a href="#">Adopt Now</a>

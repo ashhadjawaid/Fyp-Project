@@ -8,9 +8,8 @@ const CtaRescue = () => {
             <div className="rescue-img">
                 <img src={bannerRescue} border="0"/>
                 <div className="rescue-text">
-                    <strong>
-                        <span>Rescue a Paw</span><br/> Save a Life
-                    </strong>
+                   <h1>     Rescue a Paw Save a Life</h1>
+                  
                     <p>Make a difference in a rescue animal's life with love,  <br/>
                         care, and a forever home.</p>
                     <a href="#">Rescue Now</a>
