@@ -83,6 +83,24 @@ export const postAdoption = catchAsyncErrors(async(req, res, next) => {
   }
 });
 
+export const getadoptionById =async (req,res)=>{
+  const { id } = req.params;
+  console.log("kiya msla hai", id)
+  try {
+    const adoptPet = await Adoption.findById(id);
+    console.log("kiya msla hai", adoptPet)
+    if (!adoptPet) {
+      return next(new ErrorHandler("Adoption Expired", 404));
+    }
+    res.status(200).json({
+      success: true,
+      adoptPet,
+    });
+    console.log("kiya msla hai", adoptPet)
+  } catch (error) {
+    return next(new ErrorHandler(`Invalid ID / CastError`, 404));
+  }
+}
 export const deleteAdoption = async (req, res) => {
   try {
     const { id } = req.params;
