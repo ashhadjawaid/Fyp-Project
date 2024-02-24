@@ -2,15 +2,40 @@ import mongoose from "mongoose";
 
 const AdoptionSchema = new mongoose.Schema(
   {
-    firstName: {
+    petName: {
       type: String,
       required: true,
     },
-    lastName: {
+    petBio: {
       type: String,
       required: true,
     },
-    email: {
+    petBreed: {
+      type: String,
+      required: true,
+    },
+    age: {
+      type: Number,
+      required: true,
+    },
+    status: {
+      type: String,
+      default: 'Available',
+    },
+    weight: {
+      type: Number,
+      required: true,
+    },
+    height: {
+      type: Number,
+      required: true,
+    },
+    hypoallegenic: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    city: {
       type: String,
       required: true,
     },
@@ -18,13 +43,19 @@ const AdoptionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    phone: {
-      type: String,
-      required: true,
+    adoptionPicture: {
+      public_id: {
+        type: String, 
+        
+      },
+      url: {
+        type: String, 
+       
+      },
     },
-    pet: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+    postedBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Shelter",
     },
   },
   {
