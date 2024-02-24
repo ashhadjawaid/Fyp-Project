@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import toast from "react-hot-toast";
+import "./post.css"
 
 const PostAnimal = () => {
   const [animalPicture, setAnimalPicture] = useState(null);
@@ -139,9 +140,9 @@ const PostAnimal = () => {
 
   return (
     <div className='postAnimal'>
-      <div className="container">
+      <div className="container form-container">
         <h3>Found any Animal?</h3>
-        <form onSubmit={handlePostAnimal}>
+        <form className='formPost' onSubmit={handlePostAnimal}>
           <input
             type="text"
             name="applicantName"
@@ -212,7 +213,7 @@ const PostAnimal = () => {
             value={rescueAnimal.address}
             onChange={handleInput}
           />
-         
+         <div>
           <input
             type="text"
             name="city"
@@ -227,6 +228,7 @@ const PostAnimal = () => {
             value={rescueAnimal.zip}
             onChange={handleInput}
           />
+          </div>
 
           <div className="upload">
             <label style={{ textAlign: "start", display: "block", fontSize: "20px" }}>

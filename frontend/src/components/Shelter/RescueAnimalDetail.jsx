@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import adop_img01 from '../../../public/assets/adop_img01.png';
 import './Shelter.css';
 
 const RescueAnimalDetail = () => {
-  const { id } = useParams(); // Get the animal ID from the URL parameter
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [rescueAnimal, setRescueAnimal] = useState(null);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const RescueAnimalDetail = () => {
 
         const data = await response.json();
         setRescueAnimal(data.rescueAnimal);
-        console.log(data)
+        console.log(data);
       } catch (error) {
         console.error(error.message);
       }
@@ -25,6 +26,11 @@ const RescueAnimalDetail = () => {
 
     fetchAnimalDetails();
   }, [id]);
+
+  const handleFetchNearestShelter = () => {
+    // Step 3: Function to handle navigation to the shelter page
+    navigate(`/all-shelters/${id}`); // Assuming the route for shelter page is '/admin/shelters'
+  };
 
   if (!rescueAnimal) {
     return <div>Loading...</div>;
@@ -35,7 +41,6 @@ const RescueAnimalDetail = () => {
         <div className="row">
           <div className="img col-lg-6">
             <img src={rescueAnimal.animalPicture.url} alt="" />
-
           </div>
           <div className="col-lg-6">
             <div className="text-description">
@@ -44,14 +49,12 @@ const RescueAnimalDetail = () => {
               <p>Animal Condition: {rescueAnimal.petCondition}</p>
               <p>Address: {rescueAnimal.address}</p>
             </div>
-            
-
           </div>
         </div>
         <div className="row">
           <div className="col-lg-6">
             <h2>Applicant Detail</h2>
-            <p>Apploicant Name: {rescueAnimal.applicantName}</p>
+            <p>Applicant Name: {rescueAnimal.applicantName}</p>
             <p>Applicant Email: {rescueAnimal.applicantEmail}</p>
             <p>Applicant Phone Number: {rescueAnimal.applicantPhone}</p>
           </div>
@@ -68,11 +71,14 @@ const RescueAnimalDetail = () => {
             <p>Additional Information about Injured Animal: {rescueAnimal.addInfoAnimal}</p>
             <p>Additional Information about Location: {rescueAnimal.addInfoLocation}</p>
           </div>
-         
+          <div>
+            {/* Step 2: Attach onClick event handler */}
+            <button onClick={handleFetchNearestShelter}>Fetch Nearest Shelter</button>
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RescueAnimalDetail
+export default RescueAnimalDetail;

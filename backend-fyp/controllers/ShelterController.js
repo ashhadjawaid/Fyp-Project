@@ -32,7 +32,7 @@ export const createShelter = async (req, res) => {
     }
 };
 
-export const getAllShelter = async () => {
+export const getAllShelter = async (req, res) => {
     try {
         const shelters = await Shelter.find()
         console.log(shelters);
@@ -55,3 +55,17 @@ export const getAllShelter = async () => {
         });
     }
 }
+
+export const getShelterById = async (req, res) => {
+    try {
+        const { shelterId } = req.params;
+        const shelter = await Shelter.findById(shelterId);
+        if (!shelter) {
+            return res.status(404).json({ success: false, message: 'Shelter not found.' });
+        }
+        res.status(200).json({ success: true, shelter });
+    } catch (error) {
+        console.error('Error fetching shelter by ID:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+};
