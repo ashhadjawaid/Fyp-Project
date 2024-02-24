@@ -3,7 +3,7 @@ import Shelter from "../models/ShelterSchema.js";
 export const createShelter = async (req, res) => {
     try {
         // Check if shelter with provided _id exists
-        const existingShelterData = await Shelter.findOne({ _id: req.body.shelter_id }); // Corrected field name to shelter_id
+        const existingShelterData = await Shelter.findOne({ _id: req.body.shelter_id }); 
 
         if (existingShelterData) {
             return res.status(404).send({ success: false, msg: "Shelter already exists" });
@@ -16,8 +16,8 @@ export const createShelter = async (req, res) => {
 
         const shelter = new Shelter({
             name: req.body.name,
-            shelterName: req.body.shelterName, // Corrected field name to shelterName
-            email: req.body.email, // Corrected field name to email
+            shelterName: req.body.shelterName, 
+            email: req.body.email, 
             address: req.body.address,
             currentLocation: {
                 type: "Point",
@@ -32,4 +32,26 @@ export const createShelter = async (req, res) => {
     }
 };
 
-export default createShelter
+export const getAllShelter = async () => {
+    try {
+        const shelters = await Shelter.find()
+        console.log(shelters);
+        if (!shelters || shelters.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Shelter not found",
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            shelters,
+        });
+
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).json({
+            success: false,
+            message: "error in Shelter Controller",
+        });
+    }
+}

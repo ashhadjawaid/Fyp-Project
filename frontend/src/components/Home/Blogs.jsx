@@ -9,7 +9,7 @@ const Blogs = () => {
     <div className='blogs'>
       <div className="container py-5">
         <h2>Our Latest Blog & Articles</h2>
-        <p>Discover the latest insights and tips for enhancing your shelter home experience on our blog. Stay informed and inspired with our curated collection of articles.</p>
+        <p className='text-center'>Discover the latest insights and tips for enhancing your shelter home experience on our blog. Stay informed and inspired with our curated collection of articles.</p>
         <div className="row my-5">
         <div className="col-lg-6">
           <div className="row">

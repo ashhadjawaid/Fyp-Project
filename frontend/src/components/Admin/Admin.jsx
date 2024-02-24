@@ -17,6 +17,9 @@ const Admin = () => {
               <li>
                 <NavLink to="/admin/rescue-request" activeClassName="active">Rescue Request</NavLink>
               </li>
+              <li>
+                <NavLink to="/admin/shelters" activeClassName="active">Shelters</NavLink>
+              </li>
             </ul>
           </nav>
         </div>

@@ -1,9 +1,9 @@
 import { User } from "../models/userSchema.js";
-import  RescueAnimal from "../models/rescueAnimalSchema.js";
+import RescueAnimal from "../models/rescueAnimalSchema.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 export const getAllUser = async (req, res) => {
     try {
-        const users = await User.find({},{password:0})
+        const users = await User.find({}, { password: 0 })
         console.log(users);
         if (!users || users.length === 0) {
             return res.status(404).json({
@@ -11,7 +11,7 @@ export const getAllUser = async (req, res) => {
                 message: "user not found",
             });
         }
-        return  res.status(200).json({
+        return res.status(200).json({
             success: true,
             users,
         });
@@ -40,7 +40,7 @@ export const getAllRescueRequest = catchAsyncErrors(async (req, res) => {
         res.status(200).json({
             success: true,
             rescueAnimal,
-          });
+        });
     } catch (error) {
         console.log(error.message)
         res.status(400).json({
@@ -48,6 +48,21 @@ export const getAllRescueRequest = catchAsyncErrors(async (req, res) => {
             message: "error in getAllRescueRequest Controller",
         });
     }
-   
- 
-  });
+
+
+});
+
+
+export const deleteUser = async (req, res) => {
+    const { id } = req.params;
+    const rescueAnimal = await RescueAnimal.findById(id);
+    if (!rescueAnimal) {
+        return next(new ErrorHandler("Animal not found!", 404));
+    }
+    await rescueAnimal.deleteOne();
+    res.status(200).json({
+        success: true,
+        message: "Application Deleted!",
+        rescueAnimal,
+    });
+}

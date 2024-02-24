@@ -6,7 +6,7 @@ import bannerImage3 from '../../../public/assets/banner3.jpg'
 
 const Banner = () => {
   return (
-    <section className="slider_section position-relative">
+    <section className="slider_section">
       <div className="carousel slide" data-ride="carousel">
         <div className="container">
           <div className="row align-items-center">

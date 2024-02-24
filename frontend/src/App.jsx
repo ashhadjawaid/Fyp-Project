@@ -19,6 +19,7 @@ import ShelterRegistration from './components/Auth/ShelterRegistration'
 import Registration from './components/Auth/Registration'
 import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
 import RescueAnimalDetail from "./components/Shelter/RescueAnimalDetail";
+import AdminShelter from "./components/Admin/AdminShelter";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);
@@ -44,7 +45,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -59,9 +60,10 @@ const App = () => {
           <Route path="/admin" element={<Admin />}>
             <Route path="users" element={<AdminUser />}/>
             <Route path="rescue-request" element={<RescueRequest />}/>
+            <Route path="shelters" element={<AdminShelter />}/>
           </Route>
         </Routes>
-        <Footer />
+       
         <Toaster />
       </BrowserRouter>
     </>

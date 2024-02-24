@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { Context } from "../../main";
+import { Navigate, useNavigate } from 'react-router-dom';
 const RescueRequest = () => {
     const { authToken } = useContext(Context);
     const [rescueAnimal, setRescueAnimal] = useState(null);
+    const navigate = useNavigate();
     const getAllRescueRequest = async () => {
         try {
             const response = await fetch('http://localhost:4000/api/v1/admin/getAllRescueRequest', {
@@ -24,6 +26,11 @@ const RescueRequest = () => {
         } catch (error) {
             console.log(error.message)
         }
+       
+    }
+
+    const navigateToDetail = (rescueID) => {
+        navigate(`/rescue-Detail/${rescueID}`);
     }
     useEffect(() => {
         getAllRescueRequest()
@@ -47,7 +54,7 @@ const RescueRequest = () => {
                 <tbody>
                     {Array.isArray(rescueAnimal) && rescueAnimal.length > 0 ? (
                         rescueAnimal.map((currentUser, index) => (
-                            <tr key={index}>
+                            <tr key={index} onClick={()=>navigateToDetail(currentUser._id)} >
                                 <th scope="row">{index + 1}</th>
                                 <td>{currentUser.applicantName}</td>
                                 <td>{currentUser.applicantEmail}</td>

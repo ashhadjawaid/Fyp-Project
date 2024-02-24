@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +9,7 @@
 }
 h1 {
   font-size: 4rem;
+  font-family: "Fraunces", serif;
 }
 h2 {
   font-size: 3.4rem;
@@ -1145,8 +1147,9 @@ p {
   }
 }
 nav {
-  background: #f7ede0;
-  padding: 0 20px;
+  
+    z-index: 11111; 
+    position: relative;
 }
 nav .container {
   max-width: 1300px;
@@ -1188,7 +1191,8 @@ nav .menu button:hover {
   font-weight: 500;
   border: 1px solid #184235;
 }
-nav .menu li a {
+nav .menu li a, 
+nav .menu li  {
   color: white;
     text-decoration: none;
     font-weight: 600;
@@ -1196,13 +1200,15 @@ nav .menu li a {
     position: relative;
     overflow: hidden; 
 }
-nav .menu li a:hover {
+nav .menu li a:hover,
+nav .menu li:hover {
   color: #dd8007;
   transition: all 0.3s;
 }
 
 
-nav .menu li a::before {
+nav .menu li a::before,
+nav .menu li::before {
   content: "";
   position: absolute;
   background: #ffffff;
@@ -1213,8 +1219,8 @@ nav .menu li a::before {
   transition: width 0.3s; /* Transition width for the animation */
 }
 
-nav .menu li a:hover::before {
-  
+nav .menu li a:hover::before,
+nav .menu li:hover::before  {
   width: 100%;
 }
 nav .hamburger {

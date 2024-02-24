@@ -56,7 +56,7 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/rescue">Found any animal to rescue?</Link>
+          <Link to="/rescue">Rescue Center</Link>
         </li>
         <li onClick={handleLogout}>Logout</li>
       </>
