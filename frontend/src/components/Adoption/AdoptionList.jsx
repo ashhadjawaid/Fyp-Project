@@ -1,5 +1,6 @@
 import React from 'react'
 import AdoptioImage1 from '../../../public/assets/adop_img01.png';
+import "./Adoption.css"
 const AdoptionList = () => {
     return (
         <div className='Adoption-List py-5'>
@@ -15,28 +16,106 @@ const AdoptionList = () => {
                             </div>
 
                             <div className="adoption-text-box">
-                                <h3>Hello</h3>
-                                <p>lorem Ipsum</p>
-                                <div className="icon-text">
-                                    <span className="icon-bullets"></span>
-                                    <p>hello</p>
+                                <h3>Oreo</h3>
+                                <p>Cat</p>
+                                <div className='iconContainer'>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>6 Months</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Female</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Small</p>
+                                    </div>
                                 </div>
-                                <div className="icon-text">
-                                    <span className="icon-bullets"></span>
-                                    <p>hello</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="adoption-box">
+                            <div className="adoption-img">
+                                <img src={AdoptioImage1} alt="" />
+                            </div>
+
+                            <div className="adoption-text-box">
+                                <h3>Oreo</h3>
+                                <p>Cat</p>
+                                <div className='iconContainer'>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>6 Months</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Female</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Small</p>
+                                    </div>
                                 </div>
-                                <div className="icon-text">
-                                    <span className="icon-bullets"></span>
-                                    <p>hello</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="adoption-box">
+                            <div className="adoption-img">
+                                <img src={AdoptioImage1} alt="" />
+                            </div>
+
+                            <div className="adoption-text-box">
+                                <h3>Oreo</h3>
+                                <p>Cat</p>
+                                <div className='iconContainer'>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>6 Months</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Female</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Small</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="adoption-box">
+                            <div className="adoption-img">
+                                <img src={AdoptioImage1} alt="" />
+                            </div>
+
+                            <div className="adoption-text-box">
+                                <h3>Oreo</h3>
+                                <p>Cat</p>
+                                <div className='iconContainer'>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>6 Months</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Female</p>
+                                    </div>
+                                    <div className="icon-text">
+                                        <span className="icon-bullets"></span>
+                                        <p>Small</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div className="col-lg-3"></div>
-                <div className="col-lg-3"></div>
-                <div className="col-lg-3"></div>
+                
             </div>
         </div>
 

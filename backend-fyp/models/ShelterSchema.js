@@ -29,7 +29,23 @@ const ShelterSchema = new Schema({
             type: [Number], // Array of numbers
             required: true
         }
-    }
+    },
+    requestCount:{
+        type:Number,
+        default: 0
+    },
+    playerId:{
+        type: String // For stroing OneSignal Player Id
+    },
+    requests: [{
+        requestId: {
+            type: Schema.Types.ObjectId,
+            ref: 'RescueAnimal'
+        },
+        requestInfo: {
+            type: Object // This should match the structure of the user's request data
+        }
+    }]
 });
 
 // Create 2dsphere index on location field

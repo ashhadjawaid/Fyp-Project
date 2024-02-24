@@ -3,7 +3,15 @@ import axios from 'axios';
 import { Context } from '../../main';
 import { Link, Navigate } from "react-router-dom";
 import "./auth.css";
+import { FaAddressBook, FaHome, FaRegUser } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { RiLock2Fill } from "react-icons/ri";
+import { FaPencilAlt } from "react-icons/fa";
+import { FaPhoneFlip } from "react-icons/fa6";
+
 import toast from 'react-hot-toast';
+import shelterRegImg from "../../../public/assets/signupShelter.png"
+
 const LocationForm = () => {
     const { isAuthorized, setIsAuthorized } = useContext(Context);
     const [formData, setFormData] = useState({
@@ -42,45 +50,72 @@ const LocationForm = () => {
         }
     };
 
-    if(isAuthorized){
-        return <Navigate to={'/'}/>
-      }
-    
+    if (isAuthorized) {
+        return <Navigate to={'/'} />
+    }
+
 
     return (
-        <div className='container'>
-            <h2>Register Shelter Home</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        <section className='authPage'>
+            <div className='container'>
+                <div className='header'>
+                    <h2>Register Shelter Home</h2>
+
                 </div>
-                <div>
-                    <label>Shelter Name:</label>
-                    <input type="text" name="shelterName" value={formData.shelterName} onChange={handleChange} required />
+                <form onSubmit={handleSubmit}>
+                    <div className="inputTag">
+                        <label>Name:</label>
+                        <div>
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder='Enter your name' />
+                        <FaPencilAlt />
+                        </div>
+                    </div>
+                    <div className="inputTag">
+                        <label>Shelter Name:</label>
+                        <div>
+                            <input type="text" name="shelterName" value={formData.shelterName} onChange={handleChange} required placeholder='Like: ACF' />
+                            <FaHome />
+                        </div>
+                    </div>
+                    <div className="inputTag">
+                        <label>Email:</label>
+                        <div>
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder='abc@gmail.com' />
+                            <MdOutlineMailOutline />
+                        </div>
+                    </div>
+                    <div className="inputTag">
+                        <label>Address:</label>
+                        <div>
+                            <input type="text" name="address" value={formData.address} onChange={handleChange} required placeholder='abc North Karachi, Karachi' />
+                            <FaAddressBook />
+                        </div>
+                    </div>
+                    <div>
+                        <label>Latitude:</label>
+                        <div>
+                            <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
+                        </div>
+                    </div>
+                    <div>
+                        <label>Longitude:</label>
+                        <div>
+                            <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
+                        </div>
+                    </div>
+                    <div className='regbutton'>
+                        <button className='butt' type="button" onClick={fetchLocation}>Fetch Current Location</button>
+                    </div>
+                    <button className='registButton' type="submit">Register</button>
+                </form>
                 </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                <div className='banner'>
+                    <img src={shelterRegImg} alt="login" />
                 </div>
-                <div>
-                    <label>Address:</label>
-                    <input type="text" name="address" value={formData.address} onChange={handleChange} required />
-                </div>
-                <div>
-                    <label>Latitude:</label>
-                    <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
-                </div>
-                <div>
-                    <label>Longitude:</label>
-                    <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
-                </div>
-                <div>
-                    <button type="button" onClick={fetchLocation}>Fetch Current Location</button>
-                </div>
-                <button type="submit">Register</button>
-            </form>
-        </div>
+          
+
+        </section>
+
     );
 };
 

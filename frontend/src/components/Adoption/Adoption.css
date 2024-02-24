@@ -40,3 +40,83 @@
 .banner-sub-detail p {
     text-align: left;
 }
+
+/* adoption page */
+/* .Adoption-List {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+  }
+  
+   .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  } 
+  p {
+    text-align: center;
+  }
+  */
+ 
+   
+ 
+  .adoption-box {
+    background-color: #fae3e3;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+.container .row .adoption-box .adoption-text-box .iconContainer p {
+    font-size: 14px;
+    display: inline-block;
+}
+
+  .adoption-img {
+    position: relative;
+  }
+   
+  
+  .adoption-img img {
+    width: 100%;
+    border-radius: 5px;
+  }
+ 
+  .adoption-text-box {
+    padding-top: 20px;
+    text-align: center;
+  }
+    
+  .adoption-text-box h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+   
+.icon-text {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 13px;
+    /* flex-wrap: nowrap; */
+}
+
+  .icon-bullets {
+    width: 10px;
+    height: 10px;
+    background-color: #d37a27;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+   
+  }
+   
+  .iconContainer {
+    display: flex;
+    align-items: center;
+  }
