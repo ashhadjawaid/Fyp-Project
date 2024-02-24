@@ -2,6 +2,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import {Adoption} from"../models/Adoption.js";
 import ErrorHandler from "../middlewares/error.js";
 import cloudinary from "cloudinary";
+
 export const getAll = async (req, res) => {
   try {
     const adoptions = await Adoption.find();
@@ -81,48 +82,6 @@ export const postAdoption = catchAsyncErrors(async(req, res, next) => {
     return next(new ErrorHandler("Error in adding the animal to Adoption.", 500));
   }
 });
-
-
-export const create = async (req, res) => {
-  try {
-    const { firstName, lastName, email, address, phone, pet } = req.body;
-
-    const created = await Adoption.create({
-      firstName,
-      lastName,
-      phone,
-      email,
-      address,
-      pet,
-    });
-
-    res.json({ message: "Adooptions successfuly created.", created });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error);
-  }
-};
-
-export const update = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { firstName, lastName, email, address, phone, pet } = req.body;
-
-    const created = await Adoption.findByIdAndUpdate(id, {
-      firstName,
-      lastName,
-      phone,
-      email,
-      address,
-      pet,
-    });
-
-    res.json({ message: "Adooptions successfuly updated.", created });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error);
-  }
-};
 
 export const deleteAdoption = async (req, res) => {
   try {

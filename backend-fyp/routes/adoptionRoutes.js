@@ -1,5 +1,5 @@
 import express from "express";
-import {deleteAdoption,getAll, create, update, postAdoption} from '../controllers/adoptionController.js'
+import {deleteAdoption,getAll, postAdoption,} from '../controllers/adoptionController.js'
 
 const router = express.Router();
 

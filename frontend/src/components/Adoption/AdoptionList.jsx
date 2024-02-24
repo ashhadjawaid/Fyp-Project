@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdoptioImage1 from '../../../public/assets/adop_img01.png';
 import "./Adoption.css"
 const AdoptionList = () => {
+    const [adoptionList, setAdoptionList] = useState(null)
+    const getAllAdoptions = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/api/v1/adoption/all', {
+                method: "GET",
+            })
+            const data = await response.json()
+            setAdoptionList(data.adoptionList);
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const navigateToDetail = () => {
+       console.log("iqra")
+    }
+    useEffect(() => {
+        getAllAdoptions()
+    }, [])
     return (
         <div className='Adoption-List py-5'>
 
