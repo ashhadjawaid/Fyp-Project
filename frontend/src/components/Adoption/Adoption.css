@@ -1,5 +1,8 @@
 .paws-banner{
     background-color: #f7ede0;
+    padding-top: -300px;
+    margin-top: -200px;
+    padding: 200px 0;
 }
 
 
@@ -11,10 +14,13 @@
     margin-top: 40px;
 }
 
-.icon-text {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.banner-sub-detail .head-sub-text .icon-text {
+  display: flex;
+  /* margin-bottom: 17px; */
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 13px; */
+  /* flex-wrap: nowrap; */
 }
 
 .banner-heading h2 {
@@ -35,6 +41,8 @@
     width: 25px;
     height: 25px;
     text-align: center;
+    margin-top: 0;
+    margin-right: 4px;
 }
 
 .banner-sub-detail p {
