@@ -21,6 +21,8 @@ import ShelterGetRescue from "./components/Shelter/ShelterGetRescue"
 import RescueAnimalDetail from "./components/Shelter/RescueAnimalDetail";
 import AdminShelter from "./components/Admin/AdminShelter";
 import AdoptionForm from "./components/Adoption/AdoptionForm";
+import ShelterDetailPage from "./components/Shelter/ShelterDetailsPage";
+import AllSheltersPage from "./components/Shelter/AllShelterPage";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser, setAuthToken } = useContext(Context);
@@ -46,7 +48,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        
+        <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -64,14 +66,15 @@ const App = () => {
             <Route path="rescue-request" element={<RescueRequest />}/>
             <Route path="shelters" element={<AdminShelter />}/>
           </Route>
+          <Route path="/all-shelters/:rescueId" element={<AllSheltersPage />} />
+          {/* Route for Shelter Detail Page */}
+          <Route path="/shelter-Detail/:shelterId" element={<ShelterDetailPage />} />
         </Routes>
-       
+        <Footer />
         <Toaster />
       </BrowserRouter>
     </>
   );
 };
-// hello
-// hello paagal
-export default App;
 
+export default App;
